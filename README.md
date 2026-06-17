@@ -1,82 +1,67 @@
-# 🕵️ DFIR Case Study – Rhino Image Investigation
+# 🕵️ DFIR Rhino Case Study – Digital Forensics Investigation
 
 ## 📌 Overview
-This project is a Digital Forensics and Incident Response (DFIR) investigation of a simulated case involving illegal distribution and hidden embedding of rhino images.
+This project is a Digital Forensics and Incident Response (DFIR) case study involving multi-source evidence analysis, including network traffic logs, USB forensic images, encrypted archives, and steganographic image analysis.
 
-The investigation analyzed network traffic (TCP/HTTP), USB forensic images, and JPEG file structures to identify hidden or embedded image data.
-
-Multiple forensic tools were used to reconstruct evidence and detect concealed data within image files.
+The objective was to recover hidden rhino images, analyze data exfiltration techniques, and correlate evidence across multiple sources.
 
 ---
 
 ## 🛠️ Tools Used
-- Wireshark (TCP/HTTP Traffic Analysis)
+- Wireshark (Network Traffic Analysis)
 - Autopsy (Disk Forensics)
-- PhotoRec (File Recovery)
+- fcrackzip (Archive Password Cracking)
 - Stegdetect (Steganography Detection)
-- JPseek (JPEG Structure Analysis & File Carving)
-- Binwalk (Embedded File Analysis)
+- Stegbreak (Brute-force Steganography Analysis)
+- JPseek (JPEG Structure & Hidden Data Extraction)
+- File extraction via TCP stream reconstruction
 
 ---
 
-## 🌐 Network Traffic Analysis (Wireshark)
-- Analyzed packet capture using Wireshark
-- Focused on TCP stream reconstruction and HTTP communication
-- Identified file transfer activity over network traffic
-- Extracted image-related data from TCP/HTTP streams
+## 📁 Evidence Sources
+- rhino.log
+- rhino2.log
+- rhino3.log
+- RHINOUSB.dd
+- contraband.zip (recovered from network traffic)
 
 ---
 
-## 💾 USB Forensics (RHINOUSB.dd)
-- Analyzed USB disk image using forensic tools
-- Recovered deleted and existing image files
-- Extracted multiple rhino-related artifacts
-- Correlated USB evidence with network traffic activity
+## 🌐 Network Forensics (Wireshark Analysis)
+- TCP traffic was analyzed to identify file transfer activity
+- Stream 69 contained exposed credentials (username and password)
+- Files were reconstructed from TCP streams using export object features
+
+### Recovered Files:
+- rhino1.jpg
+- rhino2.jpg
+- rhino3.jpg
+- contraband.zip
 
 ---
 
-## 🔍 Steganography Analysis (Stegdetect)
-- Ran Stegdetect on recovered JPEG images
-- Most images returned negative results for steganography
-- No confirmed hidden payloads detected by automated analysis tools
+## 📦 Encrypted Archive Analysis
+The file `contraband.zip` was extracted from network traffic and cracked using `fcrackzip`.
+
+### Result:
+- One additional image file was successfully recovered
+
+This confirmed the presence of encrypted hidden evidence within the dataset.
 
 ---
 
-## 🧪 JPseek Analysis (Key Finding)
-- Performed structural JPEG analysis using JPseek
-- Detected embedded image data within a crocodile image file
-- Successfully extracted a hidden rhino image from within the crocodile image
+## 💾 USB Forensics (Autopsy Analysis)
+The USB disk image (RHINOUSB.dd) was analyzed using Autopsy.
 
-### 🧠 Interpretation
-The crocodile image acted as a carrier file containing embedded image data. While Stegdetect failed to identify steganographic patterns, JPseek revealed hidden image structures through deep file analysis and carving techniques.
-
----
-
-## 📊 Key Findings
-- File transfer activity observed over TCP/HTTP streams
-- Multiple rhino images recovered from network and USB evidence
-- JPEG file anomalies detected in some images
-- Crocodile image contained embedded rhino image data
-- No traditional steganography confirmed, but embedded content was recovered through structural analysis
+### Findings:
+- Total images recovered: 9+
+  - 5 rhino images
+  - 4 crocodile images
+- 1 text file containing investigative narrative and system information
 
 ---
 
-## 🔗 Evidence Correlation
-A direct relationship was established between:
-- USB forensic image data (RHINOUSB.dd)
-- Network traffic (TCP/HTTP streams)
-- Embedded image data extracted from JPEG files
+## 🔍 Steganography Analysis
 
-This confirms multi-source data movement and concealed image embedding across different storage mediums.
-
----
-
-## 🧠 Conclusion
-The investigation successfully reconstructed a complex data concealment scenario involving network traffic, USB storage, and embedded image structures.
-
-Although steganography detection tools did not confirm hidden payloads, JPseek analysis revealed embedded rhino image data within a crocodile image, proving that file carving and structural analysis are essential in DFIR investigations.
-
----
-
-## 👨‍💻 Author
-Cybersecurity Student – SOC / DFIR Analyst Path
+### Stegdetect Analysis:
+Bulk analysis was performed using:
