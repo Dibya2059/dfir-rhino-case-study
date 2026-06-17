@@ -1,0 +1,18 @@
+Steganography Analysis – JPseek (Crocodile Images 19 & 20)
+
+During the investigation, images 19-f0103704.jpg and 20-f0104520.jpg (crocodile images) were identified as suspicious during Stegdetect analysis (jhide flag), indicating possible hidden or manipulated JPEG structures.
+
+Further analysis using JPseek confirmed that both images contained embedded hidden content requiring a passcode for extraction.
+
+Passcode Used:
+- gator / gumbo
+
+Using this passcode, JPseek successfully extracted hidden embedded data from both images, revealing additional concealed rhino image content.
+
+Findings:
+- Crocodile images were used as carrier files for hidden data
+- Embedded content was successfully extracted after authentication
+- Evidence confirms intentional steganographic concealment using password-protected image embedding
+
+Conclusion:
+The use of a passcode in image-based hiding demonstrates deliberate obfuscation techniques within the dataset. This strengthens evidence of multi-layer data concealment across image files.
