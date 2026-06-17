@@ -1,0 +1,28 @@
+# 🕵️ Evidence Overview – Rhino Case
+
+## 📄 Log Files
+The investigation included three log files:
+
+- rhino.log  
+- rhino2.log  
+- rhino3.log  
+
+These logs were analyzed to reconstruct network activity and identify file transfer behavior. They contain traces of TCP/HTTP communication and user interactions.
+
+---
+
+## 💾 USB Evidence
+- RHINOUSB.dd was analyzed as a forensic USB disk image.
+
+This image contains:
+- Recovered image files
+- Deleted artifacts
+- File system traces
+
+---
+
+## 🔍 Key Observation
+The combination of log files and USB image provides a complete view of:
+- network-based file transfer activity
+- removable media data storage
+- correlation between network and USB evidence
