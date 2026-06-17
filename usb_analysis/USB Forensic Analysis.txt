@@ -1,0 +1,43 @@
+USB Forensic Analysis – RHINOUSB.dd
+
+1. Overview
+The USB forensic image (RHINOUSB.dd) was analyzed using Autopsy to recover deleted and existing files from the device. The objective was to identify relevant evidence related to image hiding, data transfer, and suspicious activity.
+
+---
+
+2. Evidence Recovered
+A total of 9 image files and 1 text file were recovered from the USB image:
+
+- 5 rhino images
+- 4 crocodile images
+- 1 text file containing narrative and system-related information
+
+---
+
+3. Findings from Image Analysis
+- The recovered images were categorized into rhino and crocodile sets.
+- These images were analyzed for hidden content and correlation with network-extracted data.
+- Some images were later used in steganography analysis (Stegdetect and JPseek).
+
+---
+
+4. Text File Analysis
+A text file recovered from the USB contained important contextual information including:
+- Narrative describing system activity
+- References to hidden or relocated data
+- Clues related to hard drive location and investigation context
+
+This file provided critical intelligence for correlating USB evidence with network activity.
+
+---
+
+5. Key Observations
+- USB contained both relevant and decoy image files
+- Evidence suggests intentional data mixing (rhino + crocodile images)
+- Text file acted as supporting intelligence for investigation
+- Strong correlation exists between USB artifacts and network-transferred files
+
+---
+
+6. Conclusion
+The USB forensic image (RHINOUSB.dd) played a major role in the investigation by providing recovered images and contextual information. Combined with network and steganography analysis, it helped reconstruct the full evidence chain.
