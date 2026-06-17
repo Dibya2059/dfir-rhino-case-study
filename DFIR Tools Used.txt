@@ -1,0 +1,43 @@
+DFIR Tools Used – Rhino Case Study
+
+1. Network Analysis Tools
+- Wireshark
+  Used for analyzing TCP/HTTP traffic, identifying credentials in Stream 69, and extracting file transfers from network packets.
+
+---
+
+2. File Recovery & Forensics
+- Autopsy
+  Used to analyze USB forensic image (RHINOUSB.dd) and recover deleted/existing files.
+
+- fcrackzip
+  Used to crack password-protected ZIP file (contraband.zip) and extract hidden image content.
+
+---
+
+3. Steganography Analysis
+- Stegdetect
+  Used to scan JPEG images for steganographic signatures (e.g., jhide detection).
+
+- Stegbreak
+  Used for brute-force analysis of suspected stego images using rule-based and wordlist attacks.
+
+- JPseek
+  Used for deep JPEG structure analysis and extraction of embedded hidden images.
+
+---
+
+4. File Extraction Tools
+- Wireshark Export Objects / TCP Stream Reconstruction
+  Used to reconstruct transferred files (rhino images and ZIP archive) from network traffic.
+
+---
+
+5. Operating Environment Tools
+- Windows PowerShell / CMD
+  Used for file organization, script execution, and directory management during investigation.
+
+---
+
+6. Summary
+Multiple forensic tools were used in combination to perform network forensics, USB analysis, encrypted file recovery, and steganographic investigation. Each tool contributed to different stages of the DFIR workflow.
