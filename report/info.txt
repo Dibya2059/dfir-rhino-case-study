@@ -1,28 +1,103 @@
-# 🕵️ Evidence Overview – Rhino Case
+DFIR Final Report – Rhino Case Study
 
-## 📄 Log Files
-The investigation included three log files:
+1. Overview
+This investigation analyzed a multi-stage digital forensic case involving network traffic logs, USB disk images, encrypted archives, and steganographic images to identify hidden rhino image distribution and related evidence.
 
-- rhino.log  
-- rhino2.log  
-- rhino3.log  
-
-These logs were analyzed to reconstruct network activity and identify file transfer behavior. They contain traces of TCP/HTTP communication and user interactions.
+The objective was to recover at least nine rhino images and analyze possible data concealment techniques.
 
 ---
 
-## 💾 USB Evidence
-- RHINOUSB.dd was analyzed as a forensic USB disk image.
-
-This image contains:
-- Recovered image files
-- Deleted artifacts
-- File system traces
+2. Evidence Sources
+- rhino.log
+- rhino2.log
+- rhino3.log
+- RHINOUSB.dd
+- contraband.zip (extracted from network traffic)
 
 ---
 
-## 🔍 Key Observation
-The combination of log files and USB image provides a complete view of:
-- network-based file transfer activity
-- removable media data storage
-- correlation between network and USB evidence
+3. Zip File Analysis (fcrackzip)
+The file contraband.zip was recovered and cracked using fcrackzip.
+
+Result:
+- One additional image file was extracted successfully.
+
+This confirmed the presence of password-protected compressed evidence within the dataset.
+
+---
+
+4. USB Forensics (Autopsy Analysis)
+Using Autopsy, the USB disk image (RHINOUSB.dd) was analyzed.
+
+Findings:
+- Total images recovered: 9
+  - 5 rhino images
+  - 4 crocodile images
+- 1 text file containing a narrative/story
+
+---
+
+5. Hidden Content in Text File
+The recovered text file contained important investigative clues including:
+- Context about the hard drive location
+- Narrative linking system activity to evidence concealment
+
+This file played a key role in understanding the case progression.
+
+---
+
+6. Steganography Analysis (Stegdetect & Stegbreak)
+
+Bulk scan using Stegdetect:
+- Command used:
+for %f in (*.jpg) do stegdetect.exe "%f"
+
+Results:
+- Files 19 and 21 flagged as possible "jhide" (suspicious JPEG structure)
+
+Further brute-force analysis:
+- stegbreak.exe -r rules.ini -t p -f words.txt 19-f0103704.jpg
+- stegbreak.exe -r rules.ini -t p -f words.txt 20-f0104520.jpg
+
+Outcome:
+- Hidden data extraction attempts confirmed abnormal JPEG structures
+- Some files contained concealed or manipulated image data
+
+---
+
+7. JPseek Analysis (Key Finding)
+JPseek was used for deep JPEG structure inspection.
+
+Findings:
+- 2 additional hidden rhino images were extracted
+- Evidence of embedded image data inside other image files
+
+---
+
+8. Evidence Correlation
+Cross-analysis of all sources revealed:
+- Network traffic provided initial file transfers
+- ZIP file contained additional hidden image
+- USB image contained majority of recovered files
+- Steganography tools revealed manipulated JPEG files
+- JPseek confirmed embedded hidden images
+
+---
+
+9. Final Findings
+- Total rhino images recovered: 9+
+- Multiple concealment techniques used:
+  - Password-protected ZIP archive
+  - Image-based hiding (JPEG manipulation)
+  - Embedded image structures
+- USB and network evidence strongly correlated
+- Text file provided critical intelligence about system and hard drive location
+
+---
+
+10. Conclusion
+This investigation demonstrates a multi-layered forensic scenario involving network traffic analysis, encrypted archive recovery, USB forensic examination, and steganographic detection.
+
+The case highlights the importance of combining multiple forensic tools, as no single tool was sufficient to uncover all hidden evidence.
+
+Manual analysis (JPseek) proved essential in uncovering hidden embedded images missed by automated tools.
